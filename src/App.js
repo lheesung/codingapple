@@ -1,36 +1,47 @@
 import "bootstrap/dist/css/bootstrap.css";
-import { Navbar, Container, Nav} from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import "./App.css";
 import { useState } from "react";
 import { data } from "./data/data";
 import Card from "./components/Card";
+import Detail from "./routes/Detail"
+import About from "./routes/About"
+import { Route, Routes, Link, useNavigate, Outlet } from "react-router-dom";
 
 function App() {
   const [shoes] = useState(data);
-
+  let navigate = useNavigate();
   return (
     <div className="App">
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand>SHOP</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link>DETAIL</Nav.Link>
-            <Nav.Link>Features</Nav.Link>
+            <Nav.Link onClick={() => { navigate('/') }}>HOME</Nav.Link>
+            <Nav.Link onClick={() => { navigate('/detail') }}>DETAIL</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
-
-      <div className="main-bg"></div>
-      <div className="container">
-        <div className="row">
-          {/* <Card shoes={shoes[0]} i = {1} />
-          <Card shoes={shoes[1]} i = {2} />
-          <Card shoes={shoes[2]} i = {3} /> */}
-          {shoes.map((a,i) => {
-            return <Card shoes={shoes[i]} i = {i}/>
-          })}
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <div className="main-bg"></div>
+            <div className="container">
+              <div className="row">
+                {shoes.map((a, i) => {
+                  return <Card shoes={shoes[i]} i={i} />
+                })}
+              </div>
+            </div>
+          </>
+        } />
+        <Route path="/detail" element={<Detail />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+        <Route path="/about" element={<About />} >
+          <Route path="member" element={<div>멤버들</div>} />
+          <Route path="location" element={<div>회사위치</div>} />
+        </Route>
+      </Routes>
     </div>
   );
 }
