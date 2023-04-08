@@ -9,7 +9,7 @@ import About from "./routes/About"
 import { Route, Routes, Link, useNavigate, Outlet } from "react-router-dom";
 
 function App() {
-  const [shoes] = useState(data);
+  let [shoes] = useState(data);
   let navigate = useNavigate();
   return (
     <div className="App">
@@ -35,15 +35,20 @@ function App() {
             </div>
           </>
         } />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail shoes={shoes} />} /> // url 파라미타
         <Route path="*" element={<h1>404 Not Found</h1>} />
-        <Route path="/about" element={<About />} >
-          <Route path="member" element={<div>멤버들</div>} />
-          <Route path="location" element={<div>회사위치</div>} />
-        </Route>
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+
+{  
+  /* 
+  Nested Route
+  <Route path="/about" element={<About />} >
+    <Route path="member" element={<div>멤버들</div>} />
+    <Route path="location" element={<div>회사위치</div>} />
+  </Route> */}
