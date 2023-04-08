@@ -35,7 +35,7 @@ function App() {
             </div>
           </>
         } />
-        <Route path="/detail/:id" element={<Detail shoes={shoes} />} /> // url 파라미타
+        <Route path="/detail/:id" element={<Detail shoes={shoes} />} /> // url pramita
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </div>
