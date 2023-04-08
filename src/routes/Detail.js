@@ -2,14 +2,9 @@ import { useParams } from "react-router-dom"
 import styled from "styled-components";
 
 let YellowBtn = styled.button`
-    background: yellow;
+    background: ${props => props.bg};
     color: black;
     padding: 10px;
-`
-
-let Box = styled.div`
-    background-color: #e1e1e1;
-    padding: 20px;
 `
 /*
 styled-components 왜 씀?
@@ -20,16 +15,14 @@ styled-components 왜 씀?
 */
 
 export default function Detail(props) {
-    let {id} = useParams();
+    let { id } = useParams();
     // console.log(id);
-    let serched = props.shoes.find(function(x){
+    let serched = props.shoes.find(function (x) {
         return x.id == id
-      });
+    });
     return (
-        <div className="container">
-            <Box>
-                <YellowBtn></YellowBtn>
-            </Box>
+        <div className="container"> 
+            <YellowBtn bg={"blue"}></YellowBtn>
             <div className="row">
                 <div className="col-md-6">
                     <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
