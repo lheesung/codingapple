@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { data } from "./data/data";
 import Card from "./components/Card";
 import Detail from "./routes/Detail"
@@ -11,6 +11,9 @@ import { Route, Routes, Link, useNavigate, Outlet } from "react-router-dom";
 function App() {
   let [shoes] = useState(data);
   let navigate = useNavigate();
+  useEffect(() => {
+        console.log("dfghj");
+  },data)
   return (
     <div className="App">
       <Navbar bg="dark" variant="dark">
