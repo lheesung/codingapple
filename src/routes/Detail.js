@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+
 import { useParams } from "react-router-dom"
 import styled from "styled-components";
 
 export default function Detail(props) {
-    useEffect(() => { // useEffect 는 랜더링이 다 끝난 후 실행됨.
-        
-    })
     let { id } = useParams();
     // console.log(id);
     let serched = props.shoes.find(x => x.id === id);
