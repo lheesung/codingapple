@@ -36,7 +36,7 @@ function App() {
         </Container>
       </Navbar>
       {count}
-      {alert === true ? <div>2초뒤에 없어져!!!!!</div> : null}
+      {alert && <div>2초뒤에 없어져!!!!!</div>}
       <button onClick={() => { setCount(count + 1) }}>버튼</button>
       <Routes>
         <Route path="/" element={
