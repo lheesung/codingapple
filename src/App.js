@@ -14,19 +14,27 @@ function App() {
   let [count, setCount] = useState(0);
   let [alert, setAlert] = useState(true);
   useEffect(() => { // useEffect 는 랜더링이 다 끝난 후 실행됨.
-    let t = setTimeout(()=>{
+    let t = setTimeout(() => {
       setAlert(false)
       console.log("uef")
-    },2000)
-    return ()=>{ // unmount 시 실행.(mount 될 때는 안함)
+    }, 2000)
+    return () => { // unmount 시 실행.(mount 될 때는 안함)
       console.log("before execution")
       // 대게 기존 clean up function 을 작성
       clearTimeout(t);
     }
-  },[count]) // dependency: [] 안에 있는게 바뀔 떄 마다 실행됨. dependency 없으면 처음 한 번만(컴포넌트가 마운트 될 때)
+  }, [count]) // dependency: [] 안에 있는게 바뀔 떄 마다 실행됨. dependency 없으면 처음 한 번만(컴포넌트가 마운트 될 때)
   return (
     <div className="App">
       <Navbar bg="dark" variant="dark">
+        <button onClick={() => {
+          axios.get('https://codingapple1.github.io/shop/data2.json').then((결과) => {
+            console.log(결과.data)
+          })
+            .catch(() => {
+              console.log('실패함')
+            })
+        }}>버튼</button>
         <Container>
           <Navbar.Brand>SHOP</Navbar.Brand>
           <Nav className="me-auto">
