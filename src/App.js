@@ -28,8 +28,8 @@ function App() {
     <div className="App">
       <Navbar bg="dark" variant="dark">
         <button onClick={() => {
-          axios.get('https://codingapple1.github.io/shop/data2.json').then((결과) => {
-            console.log(결과.data)
+          axios.get('https://codingapple1.github.io/shop/data2.json').then((result) => {
+            console.log(result.data)
           })
             .catch(() => {
               console.log('실패함')
