@@ -7,9 +7,10 @@ import Card from "./components/Card";
 import Detail from "./routes/Detail"
 import About from "./routes/About"
 import { Route, Routes, Link, useNavigate, Outlet } from "react-router-dom";
+import axios from "axios";
 
 function App() {
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
   let [count, setCount] = useState(0);
   let [alert, setAlert] = useState(true);
@@ -29,12 +30,14 @@ function App() {
       <Navbar bg="dark" variant="dark">
         <button onClick={() => {
           axios.get('https://codingapple1.github.io/shop/data2.json').then((result) => {
-            console.log(result.data)
+            // console.log(result.data)
+            let c = [...shoes,...result.data];
+            setShoes(c);
           })
             .catch(() => {
-              console.log('실패함')
+              console.log('failed')
             })
-        }}>버튼</button>
+        }}>누르시오</button>
         <Container>
           <Navbar.Brand>SHOP</Navbar.Brand>
           <Nav className="me-auto">
@@ -76,3 +79,6 @@ export default App;
     <Route path="member" element={<div>멤버들</div>} />
     <Route path="location" element={<div>회사위치</div>} />
   </Route> */}
+
+  // axios.post('URL', {name : 'kim'}) -> post 요청
+  // Promise.all( [axios.get('URL1'), axios.get('URL2')] ) -> url1, url2로 동시에 get 요청해줌.ㄴ
